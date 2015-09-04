@@ -10,5 +10,8 @@ setup(
     license='GNU Affero General Public License v3',
     author='Simó Albert i Beltran',
     author_email='sim6@probeta.net',
+    install_requires=[
+        'pybarcode'
+    ],
     description='barcodes for financial documents'
 )
