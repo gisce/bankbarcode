@@ -65,3 +65,22 @@ class Recibo507(Recibo):
         sum = int(self.entity) + int(self.suffix) + int(self.ref) + int(self.id) + amount100
         decimals = int(Decimal(sum) / 97 % 1 * 100)
         return unicode(100 - decimals).zfill(2)
+
+    def code(self):
+        id_application = u'90'
+        format_type = u'507'
+        parity = u'0'
+
+        amount100 = Decimal(self.amount) * 100
+
+        code = \
+            id_application.zfill(2) + \
+            format_type.zfill(3) + \
+            self.entity.zfill(8) + \
+            self.suffix.zfill(3) + \
+            self.ref.zfill(11) + \
+            self.checksum() + \
+            self.id.zfill(6) + \
+            unicode(int(amount100)).zfill(10) + \
+            parity
+        return code
