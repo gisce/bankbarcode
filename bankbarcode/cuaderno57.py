@@ -39,3 +39,23 @@ class Recibo(BankBarcode):
         expected_length = 10
         description = 'amount lenth should be 10'
         return self._check_length(name, value, expected_length, description)
+
+
+class Recibo507(Recibo):
+
+    def __init__(self, entity, suffix, ref, id, amount):
+
+        if self._check_entity(entity):
+            self.entity = entity
+
+        if self._check_suffix(suffix):
+            self.suffix = suffix
+
+        if self._check_ref(ref):
+            self.ref = ref
+
+        if self._check_id(id):
+            self.id = id
+
+        if self._check_amount(amount):
+            self.amount = amount
