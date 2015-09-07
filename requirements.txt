@@ -1,3 +1,4 @@
 # python-barcode
 # We need python-barcode v0.8, to have Code128 (EAN128), not released yet
+# https://bitbucket.org/whitie/python-barcode/issues/16/pypi-08-release-request
 https://bitbucket.org/whitie/python-barcode/get/6c22b96a2ca2.zip
