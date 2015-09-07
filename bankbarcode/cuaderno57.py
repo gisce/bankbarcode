@@ -62,7 +62,12 @@ class Recibo507(Recibo):
 
     def checksum(self):
         amount100 = int(Decimal(self.amount) * 100)
-        sum = int(self.entity) + int(self.suffix) + int(self.ref) + int(self.id) + amount100
+        sum = \
+            int(self.entity) \
+            + int(self.suffix) \
+            + int(self.ref) \
+            + int(self.id) \
+            + amount100
         decimals = int(Decimal(sum) / 97 % 1 * 100)
         return unicode(100 - decimals).zfill(2)
 
