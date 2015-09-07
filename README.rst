@@ -21,13 +21,13 @@ Feel free to implement more.
     entity = '01234567'
     suffix = '023'
     ref = '12345678901'
-    id = '123456'
+    notice = '123456'
     amount = '6543.21'
 
     # get checksum value
-    checksum = Recibo507(entity, suffix, ref, id, amount).checksum()
+    checksum = Recibo507(entity, suffix, ref, notice, amount).checksum()
 
     # save barcocde as /tmp/mybarcode.svg
     path = '/tmp/mybarcode'
-    Recibo507(entity, suffix, ref, id, amount).save(path)
+    Recibo507(entity, suffix, ref, notice, amount).save(path)
 

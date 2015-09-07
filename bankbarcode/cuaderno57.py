@@ -22,10 +22,10 @@ class Recibo(BankBarcode):
         description = 'ref lenth should be 11'
         return self._check_length(name, value, expected_length, description)
 
-    def _check_id(self, value):
-        name = 'id'
+    def _check_notice(self, value):
+        name = 'notice'
         expected_length = 6
-        description = 'id lenth should be 6'
+        description = 'notice lenth should be 6'
         return self._check_length(name, value, expected_length, description)
 
     def _check_amount(self, amount):
@@ -43,7 +43,7 @@ class Recibo(BankBarcode):
 
 class Recibo507(Recibo):
 
-    def __init__(self, entity, suffix, ref, id, amount):
+    def __init__(self, entity, suffix, ref, notice, amount):
 
         if self._check_entity(entity):
             self.entity = entity
@@ -54,8 +54,8 @@ class Recibo507(Recibo):
         if self._check_ref(ref):
             self.ref = ref
 
-        if self._check_id(id):
-            self.id = id
+        if self._check_notice(notice):
+            self.notice = notice
 
         if self._check_amount(amount):
             self.amount = amount
@@ -66,7 +66,7 @@ class Recibo507(Recibo):
             int(self.entity) \
             + int(self.suffix) \
             + int(self.ref) \
-            + int(self.id) \
+            + int(self.notice) \
             + amount100
         decimals = int(Decimal(sum) / 97 % 1 * 100)
         return unicode(100 - decimals).zfill(2)
@@ -85,7 +85,7 @@ class Recibo507(Recibo):
             self.suffix.zfill(3) + \
             self.ref.zfill(11) + \
             self.checksum() + \
-            self.id.zfill(6) + \
+            self.notice.zfill(6) + \
             unicode(int(amount100)).zfill(10) + \
             parity
         return code

@@ -80,23 +80,23 @@ with description('Check input values for Recibo'):
 
         with it('return True if the length of value is 6'):
             value = unicode(randint(0, 999999)).zfill(6)
-            expect(self.recibo._check_id(value)).to(be_true)
+            expect(self.recibo._check_notice(value)).to(be_true)
 
         with it('raise a value error if length of value is less than 6'):
             short_value = unicode(randint(0, 99999))
 
             def callback():
-                self.recibo._check_id(short_value)
+                self.recibo._check_notice(short_value)
 
-            expect(callback).to(raise_error(ValueError, 'id is too short, id lenth should be 6'))
+            expect(callback).to(raise_error(ValueError, 'notice is too short, notice lenth should be 6'))
 
         with it('raise a value error if length of value is greater than 6'):
             long_value = unicode(randint(1000000, maxint))
 
             def callback():
-                self.recibo._check_id(long_value)
+                self.recibo._check_notice(long_value)
 
-            expect(callback).to(raise_error(ValueError, 'id is too long, id lenth should be 6'))
+            expect(callback).to(raise_error(ValueError, 'notice is too long, notice lenth should be 6'))
 
     with context('Check amount'):
 
