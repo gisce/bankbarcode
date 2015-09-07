@@ -12,6 +12,9 @@ class BankBarcode(object):
         elif length == expected_length:
             return True
 
+    def code(self):
+        raise NotImplementedError('This method is not implemented!')
+
     def save(self, path):
         writer_options = {'font_size': 6}
         generate(
