@@ -2,6 +2,9 @@
 BankBarcode
 ===========
 
+.. image:: https://travis-ci.org/gisce/bankbarcode.svg?branch=master
+    :target: https://travis-ci.org/gisce/bankbarcode
+
 Python library to generate barcodes for financial documents
 
 Currently only the following codes are implemented:
