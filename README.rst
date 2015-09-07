@@ -24,10 +24,12 @@ Feel free to implement more.
     notice = '123456'
     amount = '6543.21'
 
+    recibo507 = Recibo507(entity, suffix, ref, notice, amount)
+
     # get checksum value
-    checksum = Recibo507(entity, suffix, ref, notice, amount).checksum()
+    checksum = recibo507.checksum()
 
     # save barcocde as /tmp/mybarcode.svg
     path = '/tmp/mybarcode'
-    Recibo507(entity, suffix, ref, notice, amount).save(path)
+    recibo507.save(path)
 
