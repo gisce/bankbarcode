@@ -92,8 +92,9 @@ class Recibo507(Recibo):
 
     @amount.setter
     def amount(self, value):
-        if self._check_amount(value):
-            self._amount = value
+        unicode_value = unicode(value)
+        if self._check_amount(unicode_value):
+            self._amount = unicode_value
 
     def amount100(self):
         return int(Decimal(self.amount) * 100)
