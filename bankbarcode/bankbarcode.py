@@ -1,7 +1,7 @@
 from barcode import generate
 
 
-class BankBarcode():
+class BankBarcode(object):
 
     def _check_length(self, name, value, expected_length, description):
         length = len(value)
