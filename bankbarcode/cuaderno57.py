@@ -113,14 +113,25 @@ class Recibo507(Recibo):
         format_type = u'507'
         parity = u'0'
 
-        code = \
-            id_application.zfill(2) + \
-            format_type.zfill(3) + \
-            self.entity.zfill(8) + \
-            self.suffix.zfill(3) + \
-            self.ref.zfill(11) + \
-            self.checksum() + \
-            self.notice.zfill(6) + \
-            unicode(self.amount100()).zfill(10) + \
-            parity
+        amount100 = unicode(self.amount100()).zfill(10)
+
+        code = (
+            '{id_application}'
+            '{format_type}'
+            '{s.entity}'
+            '{s.suffix}'
+            '{s.ref}'
+            '{checksum}'
+            '{s.notice}'
+            '{amount100}'
+            '{parity}'
+        ).format(
+            id_application=id_application,
+            format_type=format_type,
+            s=self,
+            checksum=self.checksum(),
+            amount100=amount100,
+            parity=parity
+        )
+
         return code
