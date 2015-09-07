@@ -11,7 +11,7 @@ setup(
     author='Simó Albert i Beltran',
     author_email='sim6@probeta.net',
     install_requires=[
-        'pybarcode'
+        'pybarcode>=0.8'
     ],
     description='barcodes for financial documents'
 )
