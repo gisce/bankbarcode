@@ -11,7 +11,7 @@ setup(
     author='GISCE-TI, S.L.',
     author_email='devel@gisce.net',
     install_requires=[
-        'pybarcode>=0.8'
+        'pybarcode>=0.8b1'
     ],
     description='barcodes for financial documents'
 )
