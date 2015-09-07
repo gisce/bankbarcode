@@ -95,14 +95,16 @@ class Recibo507(Recibo):
         if self._check_amount(value):
             self._amount = value
 
+    def amount100(self):
+        return int(Decimal(self.amount) * 100)
+
     def checksum(self):
-        amount100 = int(Decimal(self.amount) * 100)
         sum = \
             int(self.entity) \
             + int(self.suffix) \
             + int(self.ref) \
             + int(self.notice) \
-            + amount100
+            + self.amount100()
         decimals = int(Decimal(sum) / 97 % 1 * 100)
         return unicode(100 - decimals).zfill(2)
 
@@ -110,8 +112,6 @@ class Recibo507(Recibo):
         id_application = u'90'
         format_type = u'507'
         parity = u'0'
-
-        amount100 = Decimal(self.amount) * 100
 
         code = \
             id_application.zfill(2) + \
@@ -121,6 +121,6 @@ class Recibo507(Recibo):
             self.ref.zfill(11) + \
             self.checksum() + \
             self.notice.zfill(6) + \
-            unicode(int(amount100)).zfill(10) + \
+            unicode(self.amount100()).zfill(10) + \
             parity
         return code
