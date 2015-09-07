@@ -1,5 +1,5 @@
 from sys import maxint
-from expects import *
+from expects import expect, be_true, raise_error
 from random import randint, uniform, random
 from bankbarcode.cuaderno57 import Recibo507
 

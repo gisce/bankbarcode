@@ -1,4 +1,4 @@
-from expects import *
+from expects import expect, equal
 from bankbarcode.cuaderno57 import Recibo507
 
 with description('Code generation for Recibo507 of cuaderno57'):
