@@ -8,8 +8,8 @@ setup(
     packages=find_packages(),
     url='https://github.com/gisce/bankbarcode',
     license='GNU Affero General Public License v3',
-    author='Simó Albert i Beltran',
-    author_email='sim6@probeta.net',
+    author='GISCE-TI, S.L.',
+    author_email='devel@gisce.net',
     install_requires=[
         'pybarcode>=0.8'
     ],
