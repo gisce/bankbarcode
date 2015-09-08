@@ -11,8 +11,8 @@ pyBarcode generates barcodes with Code128 (EAN128) since v0.8b1.
 
 https://bitbucket.org/whitie/python-barcode
 
-Why not other backend?
-======================
+Why not another backend?
+========================
 
 python-code128
 --------------
