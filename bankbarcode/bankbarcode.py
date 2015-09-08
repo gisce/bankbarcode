@@ -12,9 +12,9 @@ class BankBarcode(object):
 
         :param name: name of the value
         :param value: the value itself
-        :param expected_length: the expected lenght of the value
+        :param expected_length: the expected length of the value
         :param description: definition of the expected value
-        :return: True if value have the expected lenght, otherwise False
+        :return: True if value have the expected length, otherwise False
         """
         length = len(value)
         if length < expected_length:
