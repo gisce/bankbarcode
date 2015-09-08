@@ -79,8 +79,8 @@ class Recibo(BankBarcode):
 
 class Recibo507(Recibo):
     """
-    Receipt (Recibo) 507 for Recibos y otros (Cobros por Ventanilla y
-    Autoservicio, V2001)
+    Receipt (Recibo) 507 for Recibos y otros (Cobros por Ventanilla y \
+        Autoservicio, V2001)
     """
 
     def __init__(self, entity, suffix, ref, notice, amount):
@@ -105,8 +105,8 @@ class Recibo507(Recibo):
         """
         The entity code (Número de la sociedad emisora)
 
-        :return: the entity code (Número de la sociedad emisora) as an string
-        with 8 characters
+        :return: the entity code (Número de la sociedad emisora) as an string \
+            with 8 characters
         """
         return self._entity.zfill(8)
 
@@ -144,8 +144,8 @@ class Recibo507(Recibo):
         """
         The reference code (Número de referencia)
 
-        :return: the reference code (Número de referencia) as an string with
-        11 characters
+        :return: the reference code (Número de referencia) as an string with \
+            11 characters
         """
         return self._ref.zfill(11)
 
@@ -164,8 +164,8 @@ class Recibo507(Recibo):
         """
         The notice identification code (Identificación)
 
-        :return: the notice identification code (Identificación) as an string
-        with 6 characters
+        :return: the notice identification code (Identificación) as an string \
+            with 6 characters
         """
         return self._notice.zfill(6)
 
@@ -203,18 +203,18 @@ class Recibo507(Recibo):
         """
         Remove the decimal point of the amount (Importe)
 
-        :return: the amount (Importe) as an unicode string without decimal
-        point
+        :return: the amount (Importe) as an unicode string without decimal \
+            point
         """
         return int(Decimal(self.amount) * 100)
 
     def checksum(self):
         """
-        Generate the checksum (Dígitos de Control) to be added to reference
-        code (Número de referencia)
+        Generate the checksum (Dígitos de Control) to be added to reference \
+            code (Número de referencia)
 
-        :return: the checksum (Dígitos de Control) as an unicode string with 2
-        characters
+        :return: the checksum (Dígitos de Control) as an unicode string with \
+            2 characters
         """
         sum = \
             int(self.entity) \
