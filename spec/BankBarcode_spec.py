@@ -18,3 +18,11 @@ with description('BankBarcode'):
             return BankBarcode().save(path)
 
         expect(callback).to(raise_error(NotImplementedError, error))
+
+    with it('can\'t create SVG without code generation method'):
+        error = 'This method is not implemented!'
+
+        def callback():
+            return BankBarcode().svg()
+
+        expect(callback).to(raise_error(NotImplementedError, error))

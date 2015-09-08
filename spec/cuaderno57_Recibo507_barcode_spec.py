@@ -1,4 +1,4 @@
-from expects import expect, be_true
+from expects import expect, be_true, contain
 from bankbarcode.cuaderno57 import Recibo507
 from os.path import isfile
 
@@ -41,3 +41,18 @@ with description('Recibo507 of cuaderno57'):
             path = '/tmp/example2'
             self.example2.save(path)
             expect(isfile(path+'.svg')).to(be_true)
+
+    with context('SVG barcode'):
+        with it('accomplish the example of cuaderno57.pdf'):
+            svg = self.example_c57.svg()
+            expect(svg).to(contain('<svg','</svg>'))
+
+        with it('accomplish another example'):
+            path = '/tmp/example1'
+            svg = self.example1.svg()
+            expect(svg).to(contain('<svg','</svg>'))
+
+        with it('accomplish another example'):
+            path = '/tmp/example2'
+            svg = self.example2.svg()
+            expect(svg).to(contain('<svg', '</svg>'))
