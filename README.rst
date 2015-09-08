@@ -33,3 +33,4 @@ Feel free to implement more.
     path = '/tmp/mybarcode'
     recibo507.save(path)
 
+Read the documentation at http://bankbarcode.readthedocs.org
