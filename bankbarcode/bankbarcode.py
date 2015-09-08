@@ -1,4 +1,5 @@
 from barcode import generate
+from StringIO import StringIO
 
 
 class BankBarcode(object):
@@ -43,3 +44,13 @@ class BankBarcode(object):
             output=path,
             writer_options=writer_options
         )
+
+    def svg(self):
+        """
+        Generate a SVG with the barcode.
+
+        :return: a string with the barcode in SVG format
+        """
+        f = StringIO()
+        self.save(f)
+        return f.getvalue()

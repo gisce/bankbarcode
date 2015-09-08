@@ -33,4 +33,7 @@ Feel free to implement more.
     path = '/tmp/mybarcode'
     recibo507.save(path)
 
+    # get a string with the barcode in SVG fromat
+    svg = recibo507.svg()
+
 Read the documentation at http://bankbarcode.readthedocs.org
