@@ -20,3 +20,10 @@ python-code128
 python-code128 needs python3.
 
 https://bitbucket.org/01100101/code128/overview/
+
+reportlab
+---------
+
+reportlab can generate barcodes with code128 but it only creates PDF documents.
+
+http://www.reportlab.com
