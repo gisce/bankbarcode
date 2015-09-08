@@ -115,8 +115,7 @@ class Recibo507(Recibo):
         """
         Check the entity code (Número de la sociedad emisora) and store it
 
-        :param value:
-        :return:
+        :param value: the entity code (Número de la sociedad emisora)
         """
         if self._check_entity(value):
             self._entity = value
@@ -135,8 +134,7 @@ class Recibo507(Recibo):
         """
         Check the suffix (Sufijo) and store it
 
-        :param value:
-        :return:
+        :param value: the suffix (Sufijo)
         """
         if self._check_suffix(value):
             self._suffix = value
@@ -156,8 +154,7 @@ class Recibo507(Recibo):
         """
         Check the reference code (Número de referencia) and store it
 
-        :param value:
-        :return:
+        :param value: the reference code (Número de referencia)
         """
         if self._check_ref(value):
             self._ref = value
@@ -177,8 +174,7 @@ class Recibo507(Recibo):
         """
         Check the notice identification code (Identificación) and store it
 
-        :param value:
-        :return:
+        :param value: the notice identification code (Identificación)
         """
         if self._check_notice(value):
             self._notice = value
@@ -197,8 +193,7 @@ class Recibo507(Recibo):
         """
         Check the amount (Importe) and store it
 
-        :param value:
-        :return:
+        :param value: the amount (Importe)
         """
         unicode_value = unicode(value)
         if self._check_amount(unicode_value):
