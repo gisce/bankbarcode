@@ -13,6 +13,7 @@ Contents:
 
    README.rst
    backend.rst
+   api.rst
 
 
 Indices and tables
