@@ -12,6 +12,7 @@ Contents:
    :maxdepth: 2
 
    README.rst
+   backend.rst
 
 
 Indices and tables
