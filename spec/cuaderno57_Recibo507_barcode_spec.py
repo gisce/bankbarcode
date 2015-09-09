@@ -1,4 +1,4 @@
-from expects import expect, be_true, contain
+from expects import expect, be_true, contain, contain_exactly
 from bankbarcode.cuaderno57 import Recibo507
 from os.path import isfile
 
@@ -26,7 +26,7 @@ with description('Recibo507 of cuaderno57'):
         amount = '37.62'
         self.example2 = Recibo507(entity, suffix, ref, notice, amount)
 
-    with context('save barcode'):
+    with context('save barcode in a file'):
         with it('accomplish the example of cuaderno57.pdf'):
             provided_filename = '/tmp/example-c57'
             generated_filename = self.example_c57.save(provided_filename)
@@ -41,6 +41,17 @@ with description('Recibo507 of cuaderno57'):
             provided_filename = '/tmp/example2'
             generated_filename = self.example2.save(provided_filename)
             expect(isfile(generated_filename)).to(be_true)
+
+    with context('save barcode in a file with extension'):
+        with it('create a filename with extension if it is not provided'):
+            path = '/tmp/example-c57'
+            file = self.example_c57.save(path)
+            expect(file).to(contain_exactly('/tmp/example-c57.svg'))
+
+        with it('create a filename with only one extension if it is provided'):
+            path = '/tmp/example-c57.svg'
+            file = self.example_c57.save(path)
+            expect(file).to(contain_exactly('/tmp/example-c57.svg'))
 
     with context('SVG barcode'):
         with it('accomplish the example of cuaderno57.pdf'):
