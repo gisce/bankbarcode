@@ -56,12 +56,12 @@ with description('Recibo507 of cuaderno57'):
     with context('SVG barcode'):
         with it('accomplish the example of cuaderno57.pdf'):
             svg = self.example_c57.svg()
-            expect(svg).to(contain('<svg','</svg>'))
+            expect(svg).to(contain('<svg', '</svg>'))
 
         with it('accomplish another example'):
             path = '/tmp/example1'
             svg = self.example1.svg()
-            expect(svg).to(contain('<svg','</svg>'))
+            expect(svg).to(contain('<svg', '</svg>'))
 
         with it('accomplish another example'):
             path = '/tmp/example2'
