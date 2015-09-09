@@ -28,19 +28,19 @@ with description('Recibo507 of cuaderno57'):
 
     with context('save barcode'):
         with it('accomplish the example of cuaderno57.pdf'):
-            path = '/tmp/example-c57'
-            self.example_c57.save(path)
-            expect(isfile(path+'.svg')).to(be_true)
+            provided_filename = '/tmp/example-c57'
+            generated_filename = self.example_c57.save(provided_filename)
+            expect(isfile(generated_filename)).to(be_true)
 
         with it('accomplish another example'):
-            path = '/tmp/example1'
-            self.example1.save(path)
-            expect(isfile(path+'.svg')).to(be_true)
+            provided_filename = '/tmp/example1'
+            generated_filename = self.example1.save(provided_filename)
+            expect(isfile(generated_filename)).to(be_true)
 
         with it('accomplish another example'):
-            path = '/tmp/example2'
-            self.example2.save(path)
-            expect(isfile(path+'.svg')).to(be_true)
+            provided_filename = '/tmp/example2'
+            generated_filename = self.example2.save(provided_filename)
+            expect(isfile(generated_filename)).to(be_true)
 
     with context('SVG barcode'):
         with it('accomplish the example of cuaderno57.pdf'):
