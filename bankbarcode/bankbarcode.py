@@ -36,9 +36,10 @@ class BankBarcode(object):
         Save barcode in SVG format.
 
         :param path: path to SVG file without ".svg" extension
+        :return: a string with the name of the file generated
         """
         writer_options = {'font_size': 6}
-        generate(
+        return generate(
             'code128',
             self.code(),
             output=path,

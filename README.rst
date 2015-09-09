@@ -31,7 +31,7 @@ Feel free to implement more.
 
     # save barcocde as /tmp/mybarcode.svg
     path = '/tmp/mybarcode'
-    recibo507.save(path)
+    generated_filename = recibo507.save(path)
 
     # get a string with the barcode in SVG fromat
     svg = recibo507.svg()
