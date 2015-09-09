@@ -30,8 +30,8 @@ Feel free to implement more.
     checksum = recibo507.checksum()
 
     # save barcocde as /tmp/mybarcode.svg
-    path = '/tmp/mybarcode'
-    generated_filename = recibo507.save(path)
+    provided_filename = '/tmp/mybarcode.svg'
+    generated_filename = recibo507.save(provided_filename)
 
     # get a string with the barcode in SVG fromat
     svg = recibo507.svg()

@@ -25,6 +25,13 @@ class BankBarcode(object):
         elif length == expected_length:
             return True
 
+    def _strip_dotsvg(self, path):
+        if isinstance(path, basestring) and path[-4:] == '.svg':
+            new_path = path[:-4]
+        else:
+            new_path = path
+        return new_path
+
     def code(self):
         """
         Code generation. To implement in child classes
@@ -35,9 +42,11 @@ class BankBarcode(object):
         """
         Save barcode in SVG format.
 
-        :param path: path to SVG file without ".svg" extension
+        :param path: path to SVG file with or without ".svg" extension
         :return: a string with the name of the file generated
         """
+        path = self._strip_dotsvg(path)
+
         writer_options = {'font_size': 6}
         return generate(
             'code128',
