@@ -6,6 +6,8 @@
 Welcome to BankBarcode's documentation!
 =======================================
 
+Release v\ |release|
+
 Contents:
 
 .. toctree::
