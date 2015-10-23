@@ -88,7 +88,7 @@ class Recibo(BankBarcode):
         name = 'due_date'
         if due_date is None:
             return True
-        if isinstance(due_date, str):
+        if isinstance(due_date, basestring):
             try:
                 date = datetime.strptime(due_date, '%Y-%m-%d')
             except:
@@ -244,7 +244,7 @@ class Recibo507(Recibo):
             self._due_date = None
         else:
             if self._check_due_date(due_date, self.suffix):
-                if isinstance(due_date, str):
+                if isinstance(due_date, basestring):
                     due_date = datetime.strptime(due_date, '%Y-%m-%d')
                 self._due_date = due_date
                 self._notice = self._due_date.strftime('%d%m%y')
