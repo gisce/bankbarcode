@@ -1,4 +1,5 @@
 # coding=utf-8
+from datetime import datetime
 
 from bankbarcode import BankBarcode
 from decimal import Decimal
@@ -76,6 +77,32 @@ class Recibo(BankBarcode):
         description = 'amount lenth should be 10'
         return self._check_length(name, value, expected_length, description)
 
+    def _check_due_date(self, due_date, suffix):
+        """
+        Check due date (Fecha limite) and suffix
+
+        :param due_date: Due Date (Fecha limite)
+        :return: True if due date is a Datetime or string with format '%Y-%m-%d'
+                 and suffix bigger than 499, otherwise False
+        """
+        name = 'due_date'
+        if due_date is None:
+            return True
+        if isinstance(due_date, str):
+            try:
+                date = datetime.strptime(due_date, '%Y-%m-%d')
+            except:
+                raise ValueError(
+                    "{} must be string with format '%Y-%m-%d'".format(name))
+        else:
+            if not isinstance(due_date, datetime):
+                raise ValueError('{} must be a Datetime'.format(name))
+
+        if self._check_suffix(suffix) and int(suffix) <= 499:
+            raise ValueError('suffix with due date must be bigger than 499')
+        return True
+
+
 
 class Recibo507(Recibo):
     """
@@ -83,7 +110,8 @@ class Recibo507(Recibo):
         Autoservicio, V2001)
     """
 
-    def __init__(self, entity, suffix, ref, notice, amount):
+    def __init__(self, entity=None, suffix=None, ref=None, notice=None,
+                 amount=None, due_date=None):
         """
         Create and object of Recibo507 with checked values.
 
@@ -92,6 +120,7 @@ class Recibo507(Recibo):
         :param ref: the reference code (Número de referencia)
         :param notice: the notice identification code (Identificación)
         :param amount: the amount (Importe)
+        :param due_date: Due date (Fecha limite)
         :return: an object of Recibo507
         """
         self.entity = entity
@@ -99,6 +128,9 @@ class Recibo507(Recibo):
         self.ref = ref
         self.notice = notice
         self.amount = amount
+        self.due_date = due_date
+        if self.due_date is not None:
+            self.notice = self.due_date.strftime('%d%m%y')
 
     @property
     def entity(self):
@@ -198,6 +230,24 @@ class Recibo507(Recibo):
         unicode_value = unicode(value)
         if self._check_amount(unicode_value):
             self._amount = unicode_value
+
+    @property
+    def due_date(self):
+        """
+        Due date (Fecha limite)
+
+        :return: Datetime with Due date
+        """
+        return self._due_date
+
+    @due_date.setter
+    def due_date(self, due_date):
+        if due_date is None:
+            self._due_date = None
+        else:
+            if self._check_due_date(due_date, self.suffix):
+                self._due_date = due_date
+                self._notice = due_date.strftime('%d%m%y')
 
     def amount100(self):
         """

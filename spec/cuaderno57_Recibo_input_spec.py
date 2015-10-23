@@ -1,4 +1,5 @@
 from sys import maxint
+from datetime import datetime
 from expects import expect, be_true, raise_error
 from random import randint, uniform, random
 from bankbarcode.cuaderno57 import Recibo
@@ -123,3 +124,47 @@ with description('Check input values for Recibo'):
                 self.recibo._check_amount(float_value)
 
             expect(callback).to(raise_error(ValueError, 'amount have more than 2 decimals'))
+
+    with context('Check due date'):
+
+        with it('return True if due date is a Datetime and suffix > 499'):
+            value = datetime(2015, 1, 1)
+            expect(
+                self.recibo._check_due_date(value, '500')
+            ).to(be_true)
+
+        with it('return True if due date is string with format %Y-%m-%d and suffix > 499'):
+            value = '2015-01-01'
+            expect(
+                self.recibo._check_due_date(value, '500')
+            ).to(be_true)
+
+        with it('raise a value error if due date isn\'t Datetime'):
+            value = 2015
+            def callback():
+                self.recibo._check_due_date(value, '500')
+            expect(callback).to(raise_error(ValueError,
+                                            'due_date must be a Datetime'))
+
+        with it('raise a value error if due date isn\'t string with format %Y-%m-%d'):
+            value = 'qwerty'
+            def callback():
+                self.recibo._check_due_date(value, '500')
+            expect(callback).to(raise_error(ValueError,
+                                            "due_date must be string with format '%Y-%m-%d'"))
+
+        with it('raise a value error due date is datetime and suffix isn\'t bigger than 499'):
+            value = datetime(2015, 1, 1)
+            suffix = '499'
+            def callback():
+                self.recibo._check_due_date(value, suffix)
+            expect(callback).to(raise_error(ValueError,
+                                            'suffix with due date must be bigger than 499'))
+
+        with it('raise a value error due date is string if suffix isn\'t bigger than 499'):
+            value = '2015-01-01'
+            suffix = '499'
+            def callback():
+                self.recibo._check_due_date(value, suffix)
+            expect(callback).to(raise_error(ValueError,
+                                            'suffix with due date must be bigger than 499'))
