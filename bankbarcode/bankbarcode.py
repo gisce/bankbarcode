@@ -38,7 +38,7 @@ class BankBarcode(object):
         """
         raise NotImplementedError('This method is not implemented!')
 
-    def save(self, path):
+    def save(self, path, writer_options=None):
         """
         Save barcode in SVG format.
 
@@ -47,7 +47,11 @@ class BankBarcode(object):
         """
         path = self._strip_dotsvg(path)
 
-        writer_options = {'font_size': 6}
+        if writer_options is None:
+            writer_options = {'font_size': 6}
+        if 'font_size' not in writer_options:
+            writer_options.update({'font_size': 6})
+
         return generate(
             'code128',
             self.code(),
@@ -55,12 +59,12 @@ class BankBarcode(object):
             writer_options=writer_options
         )
 
-    def svg(self):
+    def svg(self, writer_options=None):
         """
         Generate a SVG with the barcode.
 
         :return: a string with the barcode in SVG format
         """
         f = StringIO()
-        self.save(f)
+        self.save(f, writer_options)
         return f.getvalue()
