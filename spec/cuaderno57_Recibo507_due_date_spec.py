@@ -28,7 +28,7 @@ with description('Recibo507 with due date of cuaderno57'):
         expect(recibo.notice).not_to(equal(notice))
         expect(recibo.notice).to(equal(due_date.strftime('%d%m%y')))
 
-    with it('accomplish the example of cuaderno57 with due date DDMMAA'):
+    with it('accomplish the example of cuaderno57 with due date Datetime'):
         entity = '22350466'
         suffix = '501'
         ref = '00000000015'
@@ -38,4 +38,18 @@ with description('Recibo507 with due date of cuaderno57'):
         due_date = datetime(2015, 11, 01)
         recibo = Recibo507(entity, suffix, ref, notice, amount, due_date)
         expect(recibo.notice).to(equal(due_date.strftime('%d%m%y')))
+        expect(recibo.checksum()).to(equal(checksum))
+
+    with it('accomplish the example of cuaderno57 with due date string'):
+        entity = '22350466'
+        suffix = '501'
+        ref = '00000000015'
+        notice = '300815'
+        amount = '53.98'
+        checksum = '27'
+        due_date = '2015-11-01'
+        recibo = Recibo507(entity, suffix, ref, notice, amount, due_date)
+        expect(recibo.notice).to(equal(
+            datetime.strptime(due_date, '%Y-%m-%d').strftime('%d%m%y'))
+        )
         expect(recibo.checksum()).to(equal(checksum))

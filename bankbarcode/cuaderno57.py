@@ -129,8 +129,6 @@ class Recibo507(Recibo):
         self.notice = notice
         self.amount = amount
         self.due_date = due_date
-        if self.due_date is not None:
-            self.notice = self.due_date.strftime('%d%m%y')
 
     @property
     def entity(self):
@@ -246,8 +244,10 @@ class Recibo507(Recibo):
             self._due_date = None
         else:
             if self._check_due_date(due_date, self.suffix):
+                if isinstance(due_date, str):
+                    due_date = datetime.strptime(due_date, '%Y-%m-%d')
                 self._due_date = due_date
-                self._notice = due_date.strftime('%d%m%y')
+                self._notice = self._due_date.strftime('%d%m%y')
 
     def amount100(self):
         """
