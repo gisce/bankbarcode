@@ -129,3 +129,39 @@ with description('Check input values for Recibo507'):
                 self.recibo507._check_amount(float_value)
 
             expect(callback).to(raise_error(ValueError, 'amount have more than 2 decimals'))
+
+    with context('Check amount'):
+
+        with it('return True if amount is a unicode with less than 100000000 with 2 decimals'):
+            value = unicode(round(uniform(0, 99999999.99), 2))
+            expect(self.recibo507._check_amount(value)).to(be_true)
+
+        with it('return True is amount is a int less than 100000000'):
+            value = randint(0, 99999999)
+            expect(self.recibo507._check_amount(value)).to(be_true)
+
+        with it('raise a value error if amount isn\'t less than 100000000'):
+            big_value = unicode(round(uniform(100000000, maxint), 2))
+
+            def callback():
+                self.recibo507._check_amount(big_value)
+
+            expect(callback).to(raise_error(ValueError, 'amount is too big'))
+
+        with it('raise a value error if amount have more than 2 decimals'):
+            float_value = unicode(round(random(), randint(3, 10)))
+
+            def callback():
+                self.recibo507._check_amount(float_value)
+
+            expect(callback).to(raise_error(ValueError, 'amount have more than 2 decimals'))
+
+    with context('Check due date'):
+        with it('raise a value error if due date is not Datetime'):
+
+            def callback():
+                self.recibo507.amount = 10
+                self.recibo507.due_date = 234
+
+            expect(callback).to(raise_error(ValueError,
+                                            'due_date must be a Datetime'))
