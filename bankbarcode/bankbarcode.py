@@ -7,6 +7,10 @@ class BankBarcode(object):
     Base class for barcodes
     """
 
+    defaults = {
+        'font_size': 6
+    }
+
     def _check_length(self, name, value, expected_length, description):
         """
         Check length of a value.
@@ -38,16 +42,23 @@ class BankBarcode(object):
         """
         raise NotImplementedError('This method is not implemented!')
 
-    def save(self, path):
+    def save(self, path, writer_options=None):
         """
         Save barcode in SVG format.
 
         :param path: path to SVG file with or without ".svg" extension
+        :param writer_options: Common options from pyBarcode \
+            http://pythonhosted.org/pyBarcode/writers/index.html?#common-options
         :return: a string with the name of the file generated
         """
         path = self._strip_dotsvg(path)
 
-        writer_options = {'font_size': 6}
+        if writer_options is None:
+            writer_options = self.defaults.copy()
+        else:
+            for k, v in self.defaults.items():
+                writer_options.setdefault(k, v)
+
         return generate(
             'code128',
             self.code(),
@@ -55,12 +66,14 @@ class BankBarcode(object):
             writer_options=writer_options
         )
 
-    def svg(self):
+    def svg(self, writer_options=None):
         """
         Generate a SVG with the barcode.
 
+        :param writer_options: Common options from pyBarcode \
+            http://pythonhosted.org/pyBarcode/writers/index.html?#common-options
         :return: a string with the barcode in SVG format
         """
         f = StringIO()
-        self.save(f)
+        self.save(f, writer_options)
         return f.getvalue()
