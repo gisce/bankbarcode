@@ -43,7 +43,8 @@ class BankBarcode(object):
         Save barcode in SVG format.
 
         :param path: path to SVG file with or without ".svg" extension
-        :param writer_options: Common options from pyBarcode http://pythonhosted.org/pyBarcode/writers/index.html?#common-options
+        :param writer_options: Common options from pyBarcode \
+            http://pythonhosted.org/pyBarcode/writers/index.html?#common-options
         :return: a string with the name of the file generated
         """
         path = self._strip_dotsvg(path)
@@ -64,7 +65,8 @@ class BankBarcode(object):
         """
         Generate a SVG with the barcode.
 
-        :param writer_options: Common options from pyBarcode http://pythonhosted.org/pyBarcode/writers/index.html?#common-options
+        :param writer_options: Common options from pyBarcode \
+            http://pythonhosted.org/pyBarcode/writers/index.html?#common-options
         :return: a string with the barcode in SVG format
         """
         f = StringIO()
