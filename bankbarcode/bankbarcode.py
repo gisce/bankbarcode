@@ -7,6 +7,10 @@ class BankBarcode(object):
     Base class for barcodes
     """
 
+    defaults = {
+        'font_size': 6
+    }
+
     def _check_length(self, name, value, expected_length, description):
         """
         Check length of a value.
@@ -50,9 +54,10 @@ class BankBarcode(object):
         path = self._strip_dotsvg(path)
 
         if writer_options is None:
-            writer_options = {'font_size': 6}
-        elif 'font_size' not in writer_options:
-            writer_options.update({'font_size': 6})
+            writer_options = self.defaults.copy()
+        else:
+            for k, v in self.defaults.items():
+                writer_options.setdefault(k, v)
 
         return generate(
             'code128',
