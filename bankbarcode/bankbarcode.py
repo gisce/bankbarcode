@@ -51,7 +51,7 @@ class BankBarcode(object):
 
         if writer_options is None:
             writer_options = {'font_size': 6}
-        if 'font_size' not in writer_options:
+        elif 'font_size' not in writer_options:
             writer_options.update({'font_size': 6})
 
         return generate(
