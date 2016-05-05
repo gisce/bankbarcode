@@ -273,6 +273,8 @@ class Recibo507(Recibo):
             + int(self.notice) \
             + self.amount100()
         decimals = int(Decimal(sum) / 97 % 1 * 100)
+        if not decimals:
+            return '00'
         return unicode(100 - decimals).zfill(2)
 
     def code(self):

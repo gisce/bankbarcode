@@ -28,3 +28,12 @@ with description('Checksum Recibo507 of cuaderno57'):
         amount = '37.62'
         checksum = '56'
         expect(Recibo507(entity, suffix, ref, notice, amount).checksum()).to(equal(checksum))
+
+    with it('accomplish another example'):
+        entity = '22350466'
+        suffix = '501'
+        ref = '00000085501'
+        notice = '130516'
+        amount = '56.92'
+        checksum = '00'
+        expect(Recibo507(entity, suffix, ref, notice, amount).checksum()).to(equal(checksum))
