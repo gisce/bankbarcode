@@ -3,6 +3,10 @@ python:
   - "2.7"
 install:
   - "pip install -r requirements-dev.txt"
+  - "pip install coveralls"
   - "pip install --process-dependency-links -e ."
 script:
-  - mamba
+  - mamba --enable-coverage
+after_success:
+  - coveralls
+  - coverage report
