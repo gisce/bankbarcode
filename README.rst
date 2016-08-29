@@ -4,6 +4,9 @@ BankBarcode
 
 .. image:: https://travis-ci.org/gisce/bankbarcode.svg?branch=master
     :target: https://travis-ci.org/gisce/bankbarcode
+.. image:: https://coveralls.io/repos/github/gisce/bankbarcode/badge.svg?branch=master
+    :target: https://coveralls.io/github/gisce/bankbarcode?branch=master
+
 
 Python library to generate barcodes for financial documents
 
