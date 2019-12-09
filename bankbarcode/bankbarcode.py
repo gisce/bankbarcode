@@ -1,5 +1,6 @@
 from barcode import generate
-from StringIO import StringIO
+import six
+from six.moves import StringIO
 
 
 class BankBarcode(object):

@@ -1,7 +1,8 @@
 # coding=utf-8
+from __future__ import absolute_import
 from datetime import datetime
 
-from bankbarcode import BankBarcode
+from .bankbarcode import BankBarcode
 from decimal import Decimal
 
 

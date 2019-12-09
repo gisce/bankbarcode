@@ -1,4 +1,4 @@
-from sys import maxint
+from sys import maxsize
 from expects import expect, be_true, raise_error
 from random import randint, uniform, random
 from bankbarcode.cuaderno57 import Recibo507
