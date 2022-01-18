@@ -1,6 +1,7 @@
 from barcode import generate
 import six
 from six.moves import StringIO
+from six import BytesIO
 from six import string_types
 
 
@@ -76,6 +77,6 @@ class BankBarcode(object):
             http://pythonhosted.org/pyBarcode/writers/index.html?#common-options
         :return: a string with the barcode in SVG format
         """
-        f = StringIO()
+        f = BytesIO()
         self.save(f, writer_options)
         return f.getvalue()
