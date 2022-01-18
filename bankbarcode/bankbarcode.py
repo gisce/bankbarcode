@@ -1,6 +1,7 @@
 from barcode import generate
 import six
 from six.moves import StringIO
+from six import string_types
 
 
 class BankBarcode(object):
@@ -31,7 +32,7 @@ class BankBarcode(object):
             return True
 
     def _strip_dotsvg(self, path):
-        if isinstance(path, basestring) and path[-4:] == '.svg':
+        if isinstance(path, string_types) and path[-4:] == '.svg':
             new_path = path[:-4]
         else:
             new_path = path
