@@ -79,4 +79,4 @@ class BankBarcode(object):
         """
         f = BytesIO()
         self.save(f, writer_options)
-        return f.getvalue()
+        return f.getvalue().decode('utf-8')
