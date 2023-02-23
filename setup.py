@@ -13,12 +13,9 @@ setup(
     author_email='devel@gisce.net',
     # We need python-barcode v0.8, to have Code128 (EAN128), not released yet
     # https://bitbucket.org/whitie/python-barcode/issues/16/pypi-08-release-request
-    dependency_links=[
-        "https://bitbucket.org/whitie/python-barcode/get/6c22b96.zip"
-        "#egg=pybarcode-0.8b1"
-    ],
     install_requires=[
-        'pybarcode>=0.8b1'
+        'python-barcode==0.8.0',
+        'six'
     ],
     description='barcodes for financial documents'
 )

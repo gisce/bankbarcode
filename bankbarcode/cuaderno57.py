@@ -1,8 +1,10 @@
 # coding=utf-8
+from __future__ import absolute_import, unicode_literals
 from datetime import datetime
 
-from bankbarcode import BankBarcode
+from .bankbarcode import BankBarcode
 from decimal import Decimal
+from six import text_type, string_types
 
 
 class Recibo(BankBarcode):
@@ -72,7 +74,7 @@ class Recibo(BankBarcode):
             raise ValueError('{} have more than 2 decimals'.format(name))
         if decimal > 99999999.99:
             raise ValueError('{} is too big'.format(name))
-        value = unicode(int(decimal * 100)).zfill(10)
+        value = text_type(int(decimal * 100)).zfill(10)
         expected_length = 10
         description = 'amount lenth should be 10'
         return self._check_length(name, value, expected_length, description)
@@ -88,7 +90,7 @@ class Recibo(BankBarcode):
         name = 'due_date'
         if due_date is None:
             return True
-        if isinstance(due_date, basestring):
+        if isinstance(due_date, string_types):
             try:
                 date = datetime.strptime(due_date, '%Y-%m-%d')
             except:
@@ -225,7 +227,7 @@ class Recibo507(Recibo):
 
         :param value: the amount (Importe)
         """
-        unicode_value = unicode(value)
+        unicode_value = text_type(value)
         if self._check_amount(unicode_value):
             self._amount = unicode_value
 
@@ -244,7 +246,7 @@ class Recibo507(Recibo):
             self._due_date = None
         else:
             if self._check_due_date(due_date, self.suffix):
-                if isinstance(due_date, basestring):
+                if isinstance(due_date, string_types):
                     due_date = datetime.strptime(due_date, '%Y-%m-%d')
                 self._due_date = due_date
                 self._notice = self._due_date.strftime('%d%m%y')
@@ -275,7 +277,7 @@ class Recibo507(Recibo):
         decimals = int(Decimal(sum) / 97 % 1 * 100)
         if not decimals:
             return '00'
-        return unicode(100 - decimals).zfill(2)
+        return text_type(100 - decimals).zfill(2)
 
     def code(self):
         """
@@ -283,11 +285,11 @@ class Recibo507(Recibo):
 
         :return: an unicode string with the code for the barcode
         """
-        id_application = u'90'
-        format_type = u'507'
-        parity = u'0'
+        id_application = '90'
+        format_type = '507'
+        parity = '0'
 
-        amount100 = unicode(self.amount100()).zfill(10)
+        amount100 = text_type(self.amount100()).zfill(10)
 
         code = (
             '{id_application}'

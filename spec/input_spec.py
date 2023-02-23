@@ -1,7 +1,10 @@
-from sys import maxint
+from sys import maxsize
 from expects import expect, be_true, raise_error
 from random import randint
 from bankbarcode.bankbarcode import BankBarcode
+from six import text_type
+import sys
+maxint = sys.maxsize
 
 with description('Check input values'):
 
@@ -12,7 +15,7 @@ with description('Check input values'):
             self.description = 'bar'
 
         with before.each:
-            self.value = unicode(randint(0, maxint))
+            self.value = text_type(randint(0, maxint))
 
         with it('return true for value with expected length'):
             expected_length = len(self.value)
